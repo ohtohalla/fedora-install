@@ -1,2 +1,4 @@
-# fedora-install
-Personal computer setup repo
+# Fedora clean install
+
+* ```sudo dnf update```
+* Run the script
