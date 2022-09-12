@@ -10,6 +10,10 @@ echo "Updating the system"
 
 sudo dnf update -y
 
+echo "installing GNOME"
+
+sudo dnf groupinstall gnome
+
 echo "Installing packages"
 
 sudo dnf install neovim rust cargo npm gcc g++ R rstudio gnome-tweaks kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full
