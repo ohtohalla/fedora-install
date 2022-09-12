@@ -16,7 +16,7 @@ sudo dnf groupinstall gnome
 
 echo "Installing packages"
 
-sudo dnf install neovim rust cargo npm gcc g++ R rstudio gnome-tweaks kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full
+sudo dnf install neovim rust cargo npm gcc g++ R rstudio gnome-tweaks kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full util-linux-user julia
 
 # echo "Installing extesions" sevlitä ja tee joskus
 
