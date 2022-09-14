@@ -32,13 +32,13 @@ sudo dnf install git neovim rust cargo npm gcc g++ R gnome-tweaks kitty ulaunche
 # echo "Installing extesions" sevlitä ja tee joskus
 
 echo "Downloading fonts"
-cd ~/Downloads/
-#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
+#cd ~/Downloads/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/$FONTNAME.zip
 
 
 
 echo "Installing the font" # Ja tästä pitäisi saada robustimpi
-unzip $FONTNAME.zip $FONTNAME
+unzip ${FONTNAME}.zip -d $FONTNAME
 mkdir $HOME/.fonts
 mv $FONTNAME $HOME/.fonts
 fc-cache
