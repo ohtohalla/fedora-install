@@ -1,6 +1,7 @@
 #! /bin/bash
 
 clear
+read -p "Which Nerdfont would you like to install?" FONTNAME # Lisää tähän title case handling
 
 # POSSIBLE OS
 FEDORA=`cat /etc/*elease | grep "Fedora" | wc -l`
@@ -32,9 +33,16 @@ sudo dnf install git neovim rust cargo npm gcc g++ R gnome-tweaks kitty ulaunche
 
 echo "Downloading fonts"
 cd ~/Downloads/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
-unzip Iosevka.zip
-cd
+#wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
+
+
+
+echo "Installing the font" # Ja tästä pitäisi saada robustimpi
+unzip $FONTNAME.zip $FONTNAME
+mkdir $HOME/.fonts
+mv $FONTNAME $HOME/.fonts
+fc-cache
+
 # Tähän sitten vielä fonttien asennus joskus
 
 echo "Setting tap to click and reversing scroll direction"
