@@ -26,7 +26,7 @@ fi
 
 echo "Installing packages"
 
-sudo dnf install git neovim rust cargo npm gcc g++ R rstudio gnome-tweaks kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full util-linux-user julia python3-pip
+sudo dnf install git neovim rust cargo npm gcc g++ R gnome-tweaks kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full util-linux-user julia python3-pip
 
 # echo "Installing extesions" sevlitä ja tee joskus
 
