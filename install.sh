@@ -10,7 +10,7 @@ echo "Updating the system"
 
 dnf update --refresh -y
 
-if [[CENTOS -gt 0]]
+if [CENTOS -gt 0]
 then
   echo "Enabling EPEL Repositories"
   dnf config-manager --set-enabled crb
