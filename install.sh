@@ -103,6 +103,9 @@ echo "Installing VimPlug"
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+echo "Getting Neovim config"
+mkdir -p ~/.config/nvim
+git clone https://github.com/ohtohalla/nvim-lsp-config/ ~/.config/nvim
        
 echo "Installing plugins"
 nvim '+PlugInstall | qa'
