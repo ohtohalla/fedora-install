@@ -35,6 +35,16 @@ echo "Installing Flatpaks from flatpak.list"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub $(cat flatpak.list)
 
+echo "Installing plugins for playing movies and music"
+sudo dnf install \
+    gstreamer1-plugins-{bad-\*,good-\*,base} \
+    gstreamer1-plugin-openh264 gstreamer1-libav \
+    --exclude=gstreamer1-plugins-bad-free-devel
+
+sudo dnf install lame\* --exclude=lame-devel
+
+sudo dnf group upgrade --with-optional Multimedia
+
 # echo "Installing extesions" sevlitä ja tee joskus
 
 echo "Installing Miniconda"
@@ -63,6 +73,20 @@ dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click "true"
 dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier']"
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,maximize:appmenu'"
 
+# Shortcuts:
+for i in {1..6}
+do
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i']"
+    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$i']"
+    gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]"
+done
+
+## tiling:
+gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>l']"
+gsettings set org.gnome.desktop.wm.keybindings unmaximize "['<Super>a']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>e']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Super>i']"
+
 
 echo "Installing Oh-My-Zsh"
 
@@ -84,10 +108,6 @@ echo "Installing plugins"
 nvim '+PlugInstall | qa'
 nvim '+PlugUpdate | qa'
 
-echo "Set zsh as default"
-
-chsh -s $(which zsh)
-
 echo "Installing Nvidia drivers"
 
 if [ $NVIDIA -gt 0 ]
@@ -103,3 +123,7 @@ then
     dnf install xorg-x11-drv-nvidia-cuda #optional for cuda/nvdec/nvenc support 
   fi
 fi
+
+echo "Set zsh as default"
+
+chsh -s $(which zsh) $USER
