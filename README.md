@@ -1,20 +1,13 @@
-# Fedora clean install
+# Fedora/CentOS Workstation initial setup
 
-Run first 
-```
-sudo dnf install git git-credential-libsecret
-git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret
-```
-Then 
-```git clone https://github.com/ohtohalla/fedora-install.git```
+* First create a SSH-keypair with [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+* Download ```install.sh``` and make it executable
+* Run ```install.sh```
 
-And finally make the install.sh executable and run it
+You can then manage your dotfiles with the ```config``` command (and it works like git)
 
-Afterwards you need to:
 
-* Theme the install
-* Install Iosevka fonts
-* Install Nvidia drivers if needed
-* Install Anaconda
-* Install flathub and flatpak apps
+After the initial setup you need to:
 
+* Theme the install (optional)
+* Install Iosevka fonts manually after the initial setup (optional)
