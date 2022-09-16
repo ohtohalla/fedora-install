@@ -1,12 +1,20 @@
 #! /bin/bash
 
 clear
-read -p "Which Nerdfont would you like to install?" FONTNAME # Lisää tähän title case handling
+read -p "Which Nerdfont would you like to install? The default is Iosevka. " FONTNAME # Lisää tähän title case handling
 
-# POSSIBLE OS
+# Variables
+## Possible OS
 FEDORA=`cat /etc/*elease | grep "Fedora" | wc -l`
 CENTOS=`cat /etc/*elease | grep "CentOS" | wc -l`
+
+# Availibility of Nvidia card
 NVIDIA=`sudo lspci | grep NVIDIA | wc -l`
+
+# Fontname to be installed
+if [ -z "$FONTNAME" ]
+then
+  FONTNAME="Iosevka"
 
 echo "Updating the system"
 
