@@ -6,6 +6,7 @@ read -p "Which Nerdfont would you like to install?" FONTNAME # Lisää tähän t
 # POSSIBLE OS
 FEDORA=`cat /etc/*elease | grep "Fedora" | wc -l`
 CENTOS=`cat /etc/*elease | grep "CentOS" | wc -l`
+NVIDIA=`sudo lspci | grep NVIDIA | wc -l`
 
 echo "Updating the system"
 
@@ -81,3 +82,19 @@ nvim '+PlugUpdate | qa'
 echo "Set zsh as default"
 
 chsh -s $(which zsh)
+
+echo "Installing Nvidia drivers"
+
+if [ $NVIDIA -gt 0 ]
+then
+  dnf upgrade --refresh
+  if [ $FEDORA -gt 0 ]
+  then
+    dnf install akmod-nvidia # rhel/centos users can use kmod-nvidia instead
+    dnf install xorg-x11-drv-nvidia-cuda #optional for cuda/nvdec/nvenc support
+  elif [ $CENTOS -gt 0 ]
+  then
+    dnf install kmod-nvidia # rhel/centos users can use kmod-nvidia instead
+    dnf install xorg-x11-drv-nvidia-cuda #optional for cuda/nvdec/nvenc support 
+  fi
+fi
