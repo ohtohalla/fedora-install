@@ -26,9 +26,14 @@ then
 fi
 
 
-echo "Installing packages"
+echo "Installing packages from packages.list"
 
-sudo dnf install git neovim rust cargo npm gcc g++ R gnome-tweaks gnome-extensions-app kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full util-linux-user julia python3-pip
+dnf install $(cat package.list) --skip-broken
+
+echo "Installing Flatpaks from flatpak.list"
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub $(cat flatpak.list)
 
 # echo "Installing extesions" sevlitä ja tee joskus
 
