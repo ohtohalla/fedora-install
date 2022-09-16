@@ -45,6 +45,11 @@ sudo dnf install lame\* --exclude=lame-devel
 
 sudo dnf group upgrade --with-optional Multimedia
 
+echo "Installing Sublime Text"
+rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+dnf install sublime-text
+
 # echo "Installing extesions" sevlitä ja tee joskus
 
 echo "Installing Miniconda"
