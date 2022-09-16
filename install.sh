@@ -27,52 +27,47 @@ fi
 
 echo "Installing packages"
 
-sudo dnf install git neovim rust cargo npm gcc g++ R gnome-tweaks kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full util-linux-user julia python3-pip
+sudo dnf install git neovim rust cargo npm gcc g++ R gnome-tweaks gnome-extensions-app kitty ulauncher zsh zathura zathura-pdf-mupdf texlive-scheme-full util-linux-user julia python3-pip
 
 # echo "Installing extesions" sevlitä ja tee joskus
+
+echo "Installing Miniconda"
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o ~/miniconda.sh
+bash ~/miniconda.sh -b -p $HOME/miniconda
+
+eval "$(/Users/jsmith/miniconda/bin/conda shell.bash hook)"
+conda init
 
 echo "Downloading fonts"
 #cd ~/Downloads/
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/$FONTNAME.zip
 
-
-
 echo "Installing the font" # Ja tästä pitäisi saada robustimpi
 unzip ${FONTNAME}.zip -d $FONTNAME
-mkdir $HOME/.fonts
+[ -d $HOME/.fonts ] || mkdir $HOME/.fonts
 mv $FONTNAME $HOME/.fonts
 fc-cache
 
 # Tähän sitten vielä fonttien asennus joskus
 
-echo "Setting tap to click and reversing scroll direction"
-gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+echo "Setting Gnome settings"
+dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll "false"
+dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click "true"
+dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click "true"
+dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier']"
+dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,maximize:appmenu'"
+
 
 echo "Installing Oh-My-Zsh"
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "Getting own zsh config"
-
-cd 
-cd .config
-rm .zshrc
-wget https://raw.githubusercontent.com/ohtohalla/dots/main/.zshrc
-
-echo "Set zsh as default"
-
-chsh -s $(which zsh)
-
-# Tähän joskus kitty-konffan haku kun on valmis
-
-echo "Get Neovim config"
-
-cd
-
-echo "Getting the congig files"
-mkdir -p ~/.config/nvim
-git clone https://github.com/ohtohalla/nvim-lsp-config/ ~/.config/nvim
+echo "Fetching dotfiles"
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+echo ".dots" >> .gitignore
+git clone --bare <git-repo-url> $HOME/.dots
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+config checkout
 
 echo "Installing VimPlug"
 
@@ -82,3 +77,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 echo "Installing plugins"
 nvim '+PlugInstall | qa'
 nvim '+PlugUpdate | qa'
+
+echo "Set zsh as default"
+
+chsh -s $(which zsh)
