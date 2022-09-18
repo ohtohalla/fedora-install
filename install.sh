@@ -33,6 +33,8 @@ then
   dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
 fi
 
+echo "Enabling COPR Repositories"
+sudo dnf copr enable dani/qgis
 
 echo "Installing packages from packages.list"
 
