@@ -1,7 +1,7 @@
 #! /bin/bash
 
 clear
-read -p "Which Nerdfont would you like to install? The default is Iosevka. " FONTNAME # Lisää tähän title case handling
+# read -p "Which Nerdfont would you like to install? The default is Iosevka. " FONTNAME # Lisää tähän title case handling
 
 # Variables
 ## Possible OS
@@ -12,9 +12,9 @@ CENTOS=`cat /etc/*elease | grep "CentOS" | wc -l`
 NVIDIA=`sudo lspci | grep NVIDIA | wc -l`
 
 # Fontname to be installed
-if [ -z "$FONTNAME" ]
-then
-  FONTNAME="Iosevka"
+#if [ -z "$FONTNAME" ]
+#then
+#  FONTNAME="Iosevka"
 
 echo "Updating the system"
 
@@ -71,12 +71,12 @@ conda init
 
 echo "Downloading fonts"
 #cd ~/Downloads/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/$FONTNAME.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
 
 echo "Installing the font" # Ja tästä pitäisi saada robustimpi
-unzip ${FONTNAME}.zip -d $FONTNAME
+unzip Iosevka.zip -d Iosevka
 [ -d $HOME/.fonts ] || mkdir $HOME/.fonts
-mv $FONTNAME $HOME/.fonts
+mv Iosevka $HOME/.fonts
 fc-cache
 
 # Tähän sitten vielä fonttien asennus joskus
