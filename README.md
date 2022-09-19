@@ -26,4 +26,5 @@ rm -rf ~/.dots
 curl https://raw.githubusercontent.com/ohtohalla/fedora-install/main/install-dots.sh --output install-dots.sh
 chmod +x install-dots.sh
 ./install-dots.sh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
