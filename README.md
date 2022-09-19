@@ -17,3 +17,13 @@ After the initial setup you need to:
 
 * Theme the install (optional)
 * Install Iosevka fonts manually after the initial setup (optional)
+
+Should you only want to download the dots, you can do so by running
+
+```
+rm ~/.zshrc
+rm -rf ~/.dots
+curl https://raw.githubusercontent.com/ohtohalla/fedora-install/main/install-dots.sh --output install-dots.sh
+chmod +x install-dots.sh
+./install-dots.sh
+```
