@@ -144,4 +144,4 @@ fi
 
 echo "Set zsh as default"
 
-chsh -s $(which zsh) $USER
+usermod --shell /bin/bash juhokajava
