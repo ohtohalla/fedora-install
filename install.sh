@@ -1,7 +1,7 @@
 #! /bin/bash
 
 clear
-read -p "Which Nerdfont would you like to install? The default is Iosevka. " FONTNAME # Lisää tähän title case handling
+#read -p "Which Nerdfont would you like to install? The default is Iosevka. " FONTNAME # Lisää tähän title case handling
 
 # Variables
 ## Possible OS
@@ -12,9 +12,9 @@ CENTOS=`cat /etc/*elease | grep "CentOS" | wc -l`
 NVIDIA=`sudo lspci | grep NVIDIA | wc -l`
 
 # Fontname to be installed
-if [ -z "$FONTNAME" ]
-then
-  FONTNAME="Iosevka"
+#if [ -z "$FONTNAME" ]
+#then
+FONTNAME="Iosevka"
 
 echo "Updating the system"
 
@@ -40,10 +40,20 @@ echo "Installing packages from packages.list"
 
 dnf install $(cat package.list) --skip-broken
 
-echo "Installing Flatpaks from flatpak.list"
+echo "Installing Flatpaks"
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub $(cat flatpak.list)
+flatpak install flathub com.slack.Slack
+flatpak install flathub md.obsidian.Obsidian
+flatpak install flathub com.bitwarden.desktop
+flatpak install flathub com.google.Chrome
+flatpak install flathub org.chromium.Chromium
+flatpak install flathub com.github.micahflee.torbrowser-launcher
+flatpak install flathub com.getpostman.Postman
+flatpak install flathub org.signal.Signal
+flatpak install flathub io.gitlab.librewolf-community
+flatpak install flathub org.octave.Octave
+flatpak install flathub us.zoom.Zoom
 
 echo "Installing plugins for playing movies and music"
 sudo dnf install \
@@ -63,10 +73,10 @@ dnf install sublime-text
 # echo "Installing extesions" sevlitä ja tee joskus
 
 echo "Installing Miniconda"
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o ~/miniconda.sh
-bash ~/miniconda.sh -b -p $HOME/miniconda
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash ~/Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/.miniconda
 
-eval "$(/Users/jsmith/miniconda/bin/conda shell.bash hook)"
+eval "$($HOME/.miniconda/bin/conda shell.zsh hook)"
 conda init
 
 echo "Downloading fonts"
@@ -108,8 +118,6 @@ echo "Installing Oh-My-Zsh"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Fetching dotfiles"
-rm $HOME/.zshrc
-rm -rf $HOME/.dots
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 echo ".dots" >> .gitignore
 git clone --bare git@github.com:ohtohalla/linux_dots.git $HOME/.dots
@@ -146,4 +154,4 @@ fi
 
 echo "Set zsh as default"
 
-usermod --shell /bin/bash juhokajava
+usermod --shell /bin/zsh juhokajava
