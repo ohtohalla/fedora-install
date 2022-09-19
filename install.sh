@@ -108,6 +108,8 @@ echo "Installing Oh-My-Zsh"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Fetching dotfiles"
+rm $HOME/.zshrc
+rm -rf $HOME/.dots
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 echo ".dots" >> .gitignore
 git clone --bare git@github.com:ohtohalla/linux_dots.git $HOME/.dots
