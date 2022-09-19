@@ -38,7 +38,7 @@ sudo dnf copr enable dani/qgis
 
 echo "Installing packages from packages.list"
 
-dnf install $(cat package.list) --skip-broken
+dnf install $(cat ./package.list) --skip-broken
 
 echo "Installing Flatpaks"
 
@@ -66,9 +66,9 @@ sudo dnf install lame\* --exclude=lame-devel
 sudo dnf group upgrade --with-optional Multimedia
 
 echo "Installing Sublime Text"
-rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
-dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
-dnf install sublime-text
+sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+sudo dnf install sublime-text
 
 # echo "Installing extesions" sevlitä ja tee joskus
 
