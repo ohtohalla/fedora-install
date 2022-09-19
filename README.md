@@ -6,6 +6,7 @@ After setting SSH keys, run:
 
 ```
 curl https://raw.githubusercontent.com/ohtohalla/fedora-install/main/install.sh --output install.sh
+curl https://raw.githubusercontent.com/ohtohalla/fedora-install/main/packages.list --output packages.list
 chmod +x install.sh
 sudo ./install.sh
 ```
