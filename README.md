@@ -7,7 +7,7 @@ After setting SSH keys, run:
 ```
 curl https://raw.githubusercontent.com/ohtohalla/fedora-install/main/install.sh --output install.sh
 chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
 
 You can then manage your dotfiles with the ```config``` command (and it works like git)
