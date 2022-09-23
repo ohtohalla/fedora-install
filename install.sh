@@ -12,9 +12,10 @@ CENTOS=`cat /etc/*elease | grep "CentOS" | wc -l`
 NVIDIA=`sudo lspci | grep NVIDIA | wc -l`
 
 # Fontname to be installed
-#if [ -z "$FONTNAME" ]
-#then
-FONTNAME="Iosevka"
+if [ -z "$FONTNAME" ]
+then
+  FONTNAME="Iosevka"
+fi
 
 echo "Updating the system"
 
