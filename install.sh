@@ -50,11 +50,8 @@ flatpak install flathub com.bitwarden.desktop
 flatpak install flathub com.google.Chrome
 flatpak install flathub org.chromium.Chromium
 flatpak install flathub com.github.micahflee.torbrowser-launcher
-flatpak install flathub com.getpostman.Postman
 flatpak install flathub org.signal.Signal
 flatpak install flathub io.gitlab.librewolf-community
-flatpak install flathub org.octave.Octave
-flatpak install flathub us.zoom.Zoom
 
 echo "Installing plugins for playing movies and music"
 sudo dnf install \
@@ -73,18 +70,18 @@ sudo dnf install sublime-text
 
 # echo "Installing extesions" sevlitä ja tee joskus
 
-echo "Installing Miniconda"
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash ~/Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/.miniconda
+#echo "Installing Miniconda"
+#wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+#bash ~/Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/.miniconda
 
-eval "$($HOME/.miniconda/bin/conda shell.zsh hook)"
-conda init
+#eval "$($HOME/.miniconda/bin/conda shell.zsh hook)"
+#conda init
 
 echo "Downloading fonts"
 #cd ~/Downloads/
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
 
-echo "Installing the font" # Ja tästä pitäisi saada robustimpi
+echo "Extracting the font" # Ja tästä pitäisi saada robustimpi
 unzip $FONTNAME.zip -d $FONTNAME
 [ -d $HOME/.fonts ] || mkdir $HOME/.fonts
 mv $FONTNAME $HOME/.fonts
@@ -107,16 +104,16 @@ do
     gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]"
 done
 
-echo "Setting keybinds for AltGr + HJKL"
-xmodmap -e "keycode 92 = Mode_switch" # setting AltGr as the "Mode_switch"
-xmodmap -e "keycode 43 = h H h H Left Left" # h
-xmodmap -e "keycode 44 = j J j J Down Down" # j
-xmodmap -e "keycode 45 = k K k K Up Up" # k
-xmodmap -e "keycode 46 = l L l L Right Right" # l
+#echo "Setting keybinds for AltGr + HJKL"
+#xmodmap -e "keycode 92 = Mode_switch" # setting AltGr as the "Mode_switch"
+#xmodmap -e "keycode 43 = h H h H Left Left" # h
+#xmodmap -e "keycode 44 = j J j J Down Down" # j
+#xmodmap -e "keycode 45 = k K k K Up Up" # k
+#xmodmap -e "keycode 46 = l L l L Right Right" # l
 
-echo "Installing Oh-My-Zsh"
+#echo "Installing Oh-My-Zsh"
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Fetching dotfiles"
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
@@ -125,17 +122,20 @@ git clone --bare git@github.com:ohtohalla/linux_dots.git $HOME/.dots
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 config checkout
 
-echo "Installing VimPlug"
+echo "Installing NvChad"
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim '+MasonInstallAll | qa'
 
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-echo "Getting Neovim config"
-mkdir -p ~/.config/nvim
-git clone https://github.com/ohtohalla/nvim-lsp-config/ ~/.config/nvim
+#echo "Installing VimPlug"
+
+#sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+#       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+#echo "Getting Neovim config"
+#mkdir -p ~/.config/nvim
+#git clone https://github.com/ohtohalla/nvim-lsp-config/ ~/.config/nvim
        
-echo "Installing plugins"
-nvim '+PlugInstall | qa'
-nvim '+PlugUpdate | qa'
+#echo "Installing plugins"
+#nvim '+PlugInstall | qa'
+#nvim '+PlugUpdate | qa'
 
 echo "Installing Nvidia drivers"
 
