@@ -35,8 +35,10 @@ then
 fi
 
 echo "Enabling COPR Repositories"
-sudo dnf copr enable dani/qgis
-sudo dnf copr enable solopasha/hyprlanddnf copr enable erikreider/SwayNotificationCenter
+dnf copr enable dani/qgis
+dnf copr enable solopasha/hyprland
+dnf copr enable erikreider/SwayNotificationCenter
+dnf copr enable zeno/scrcpy 
 
 echo "Installing packages from packages.list"
 
