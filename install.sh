@@ -44,6 +44,9 @@ echo "Installing packages from packages.list"
 
 dnf install $(cat ./package.list) --skip-broken
 
+echo "Installing snaps"
+snap install chezmoi --classic
+
 echo "Installing Flatpaks"
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -70,10 +73,10 @@ sudo dnf install lame\* --exclude=lame-devel
 
 sudo dnf group upgrade --with-optional Multimedia
 
-echo "Installing Sublime Text"
-sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
-sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
-sudo dnf install sublime-text
+#echo "Installing Sublime Text"
+#sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+#sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+#sudo dnf install sublime-text
 
 # echo "Installing extesions" sevlitä ja tee joskus
 
