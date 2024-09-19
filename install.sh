@@ -36,7 +36,7 @@ fi
 
 echo "Enabling COPR Repositories"
 sudo dnf copr enable dani/qgis
-sudo dnf copr enable solopasha/hyprland
+sudo dnf copr enable solopasha/hyprlanddnf copr enable erikreider/SwayNotificationCenter
 
 echo "Installing packages from packages.list"
 
