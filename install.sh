@@ -36,6 +36,7 @@ fi
 
 echo "Enabling COPR Repositories"
 sudo dnf copr enable dani/qgis
+sudo dnf copr enable solopasha/hyprland
 
 echo "Installing packages from packages.list"
 
@@ -115,7 +116,7 @@ done
 
 #sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "Fetching dotfiles"
+echo "Fetching dots"
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 echo ".dots" >> .gitignore
 git clone --bare git@github.com:ohtohalla/linux_dots.git $HOME/.dots
@@ -124,6 +125,12 @@ config checkout
 
 echo "Installing NvChad"
 git clone https://github.com/NvChad/starter ~/.config/nvim && nvim '+MasonInstallAll | qa'
+
+echo "Fetching Hyprland dots"
+git clone https://github.com/ohtohalla/hyprland-dots.git ~/.config
+rm ~/.config/hypr/hyprland.conf
+touch ~/.config/hypr/hyprland.conf
+echo "~/.config/hyprland-dots/hyprland/hyprland.conf" >> ~/.config/hypr/hyprland.conf
 
 #echo "Installing VimPlug"
 
