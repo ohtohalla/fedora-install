@@ -55,6 +55,10 @@ flatpak install flathub org.chromium.Chromium
 flatpak install flathub com.github.micahflee.torbrowser-launcher
 flatpak install flathub org.signal.Signal
 flatpak install flathub io.gitlab.librewolf-community
+flatpak install flathub io.github.kukuruzka165.materialgram
+flatpak install flathub com.rtosta.zapzap
+flatpak install flathub com.mastermindzh.tidal-hifi
+flatpak install flathub io.github.cmus.cmus
 
 echo "Installing plugins for playing movies and music"
 sudo dnf install \
