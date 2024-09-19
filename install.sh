@@ -45,6 +45,7 @@ echo "Installing packages from packages.list"
 dnf install $(cat ./package.list) --skip-broken
 
 echo "Installing snaps"
+sudo ln -s /var/lib/snapd/snap /snap
 snap install chezmoi --classic
 
 echo "Installing Flatpaks"
